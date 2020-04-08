@@ -48,9 +48,11 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 加入ocelot服务
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             //服务配置
             services.AddOcelot(Configuration);
         }
@@ -59,5 +61,13 @@ using Ocelot.Middleware;
 
            //启用Ocelot中间件
            app.UseOcelot().Wait();
+
+10，运行不调试当前项目 ctrl+F5
+
+浏览器访问 https://localhost:5001/api/default/GetList
+
+它会自动代理到https://localhost:5963/api/default/GetList
+
+简单又神奇，这样子，无论多少项目，对外就只用暴露一个接口域名就Ok了
 
 
